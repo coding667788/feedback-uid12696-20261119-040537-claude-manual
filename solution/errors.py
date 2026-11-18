@@ -1,0 +1,29 @@
+"""错误码定义。
+
+顶层错误码严格对应题目要求的三类无解原因：
+
+* ``EVIDENCE_UNCALIBRATABLE`` 单件不可校准（无结构链，或链上时钟差约束无解）
+* ``GLOBAL_VOUCHER_CONFLICT`` 全局交接占用冲突（凭单独占冲突，或跨证物组合时钟冲突）
+* ``WITNESS_INSUFFICIENT`` 见证不足（结构/占用/时钟均可行，但机构种类覆盖不达标）
+
+另外为 ``GLOBAL_VOUCHER_CONFLICT`` 提供更细的 ``detail`` 子原因，README 中说明。
+"""
+
+# 顶层错误码
+EVIDENCE_UNCALIBRATABLE = "EVIDENCE_UNCALIBRATABLE"
+GLOBAL_VOUCHER_CONFLICT = "GLOBAL_VOUCHER_CONFLICT"
+WITNESS_INSUFFICIENT = "WITNESS_INSUFFICIENT"
+
+# GLOBAL_VOUCHER_CONFLICT 的子原因
+DETAIL_VOUCHER = "voucher_occupancy_conflict"
+DETAIL_CLOCK = "joint_clock_calibration_conflict"
+
+# 其他输入层错误
+INVALID_CASE = "INVALID_CASE"
+PACKAGE_TOO_LARGE = "PACKAGE_TOO_LARGE"
+
+ALL_TOP_ERRORS = (
+    EVIDENCE_UNCALIBRATABLE,
+    GLOBAL_VOUCHER_CONFLICT,
+    WITNESS_INSUFFICIENT,
+)

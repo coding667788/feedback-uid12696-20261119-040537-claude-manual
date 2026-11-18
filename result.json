@@ -1,0 +1,787 @@
+{
+  "schema": "forensic-package-results/1",
+  "results": [
+    {
+      "case_id": "basic_sat",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 1,
+        "distinct_outbound_handover_ids": [
+          "H1"
+        ],
+        "institution_offsets": {
+          "INST_A": -50,
+          "INST_B": -50
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "7caf589c813db7c4b854efe3d953902b57b744c8e3f016ee48ae6ef6679a8c79",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 50
+            },
+            "checkpoint_entry_global_ts": 1000,
+            "terminal_digest": "8d4d82638f0ef004c4aef398f67347c3c40dd6bcec399fff6809ce594b1e9b71",
+            "outbound_count": 1,
+            "handovers": [
+              {
+                "handover_id": "H1",
+                "voucher_id": "V1",
+                "digest": "cd6d1e4659b0db676b7dabb648bdf8b31fb8ee0791049f827507e9141a8889b2",
+                "prev_digest": "7caf589c813db7c4b854efe3d953902b57b744c8e3f016ee48ae6ef6679a8c79",
+                "is_outbound": true,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "outbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 200,
+                  "global_ts": 150
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 210,
+                  "global_ts": 160
+                },
+                "effective_global_ts": 160
+              },
+              {
+                "handover_id": "H2",
+                "voucher_id": "V2",
+                "digest": "8d4d82638f0ef004c4aef398f67347c3c40dd6bcec399fff6809ce594b1e9b71",
+                "prev_digest": "cd6d1e4659b0db676b7dabb648bdf8b31fb8ee0791049f827507e9141a8889b2",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 300,
+                  "global_ts": 250
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 320,
+                  "global_ts": 270
+                },
+                "effective_global_ts": 270
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "fork_tie",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 0,
+        "distinct_outbound_handover_ids": [],
+        "institution_offsets": {
+          "INST_A": -20,
+          "INST_B": -20
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "41b566728b3923d8bc410208938230b14e62006c89d770de88fb4e290dfaa0f3",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 80
+            },
+            "checkpoint_entry_global_ts": 1000,
+            "terminal_digest": "d96e4e643ec01dcf1b046107d17e52db5654d2af276527778df029149b21a8d4",
+            "outbound_count": 0,
+            "handovers": [
+              {
+                "handover_id": "H1",
+                "voucher_id": "V1",
+                "digest": "771e28f18db2f8851eaa5117a52647a6705af2f28677e6633cfd723067666162",
+                "prev_digest": "41b566728b3923d8bc410208938230b14e62006c89d770de88fb4e290dfaa0f3",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 120,
+                  "global_ts": 100
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 130,
+                  "global_ts": 110
+                },
+                "effective_global_ts": 110
+              },
+              {
+                "handover_id": "H2A",
+                "voucher_id": "V2",
+                "digest": "d96e4e643ec01dcf1b046107d17e52db5654d2af276527778df029149b21a8d4",
+                "prev_digest": "771e28f18db2f8851eaa5117a52647a6705af2f28677e6633cfd723067666162",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 140,
+                  "global_ts": 120
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 150,
+                  "global_ts": 130
+                },
+                "effective_global_ts": 130
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "voucher_coupling",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 2,
+        "distinct_outbound_handover_ids": [
+          "H12",
+          "H20"
+        ],
+        "institution_offsets": {
+          "INST_A": -30,
+          "INST_B": -30
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "32cb28e2ff19c25f19aab06ec141249f4392d9d16078f4db9988e309283913d8",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 70
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "ca3d8e9cb9ee380c965c55bedd48b20401363b953cfab4a8896594b4ef19cfb2",
+            "outbound_count": 1,
+            "handovers": [
+              {
+                "handover_id": "H12",
+                "voucher_id": "V_E1_A",
+                "digest": "5fc39ddaedfdae85089448872b8a55d4f33565c0d9c143a0ac76c43eeff1602d",
+                "prev_digest": "32cb28e2ff19c25f19aab06ec141249f4392d9d16078f4db9988e309283913d8",
+                "is_outbound": true,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "outbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 300,
+                  "global_ts": 270
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 320,
+                  "global_ts": 290
+                },
+                "effective_global_ts": 290
+              },
+              {
+                "handover_id": "H13",
+                "voucher_id": "V_E1_B",
+                "digest": "3d29ebaed7db5032841bdcc67f996055a8d6ca4f3a9452ed03fd3dd2b42c499f",
+                "prev_digest": "5fc39ddaedfdae85089448872b8a55d4f33565c0d9c143a0ac76c43eeff1602d",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb2",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 400,
+                  "global_ts": 370
+                },
+                "receive": {
+                  "person_id": "pa3",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 420,
+                  "global_ts": 390
+                },
+                "effective_global_ts": 390
+              },
+              {
+                "handover_id": "H14",
+                "voucher_id": "V_E1_C",
+                "digest": "ca3d8e9cb9ee380c965c55bedd48b20401363b953cfab4a8896594b4ef19cfb2",
+                "prev_digest": "3d29ebaed7db5032841bdcc67f996055a8d6ca4f3a9452ed03fd3dd2b42c499f",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa3",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 500,
+                  "global_ts": 470
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 520,
+                  "global_ts": 490
+                },
+                "effective_global_ts": 490
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2",
+                "pa3"
+              ],
+              "INST_B": [
+                "pb1",
+                "pb2"
+              ]
+            },
+            "witness_kind_count": 2
+          },
+          {
+            "evidence_id": "E2",
+            "collection": {
+              "digest": "92cd52d249954bfe77ad69eeb7a3dec6e7f119e57df104dbb78e17373b75d4fe",
+              "inst_id": "INST_A",
+              "local_ts": 110,
+              "global_ts": 80
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "b6a1941b914ae924e2ded6434a8a564ab99c4a8249f4f3d2904465654ad85fe3",
+            "outbound_count": 1,
+            "handovers": [
+              {
+                "handover_id": "H20",
+                "voucher_id": "V_SHARED",
+                "digest": "4a79abb8b87e50fb268cccc793f28e641b3b3138b96b1ac711bfb397312a9bb1",
+                "prev_digest": "92cd52d249954bfe77ad69eeb7a3dec6e7f119e57df104dbb78e17373b75d4fe",
+                "is_outbound": true,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "outbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 210,
+                  "global_ts": 180
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 230,
+                  "global_ts": 200
+                },
+                "effective_global_ts": 200
+              },
+              {
+                "handover_id": "H21",
+                "voucher_id": "V_E2_END",
+                "digest": "b6a1941b914ae924e2ded6434a8a564ab99c4a8249f4f3d2904465654ad85fe3",
+                "prev_digest": "4a79abb8b87e50fb268cccc793f28e641b3b3138b96b1ac711bfb397312a9bb1",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 300,
+                  "global_ts": 270
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 320,
+                  "global_ts": 290
+                },
+                "effective_global_ts": 290
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "clock_reversal",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 1,
+        "distinct_outbound_handover_ids": [
+          "H1"
+        ],
+        "institution_offsets": {
+          "INST_A": 0,
+          "INST_B": -80
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "3022bca938383d039ea59e2381d1c9c7123d8403552d2a7be75d15162aab84f6",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 100
+            },
+            "checkpoint_entry_global_ts": 1000,
+            "terminal_digest": "9faa02d4109068fe2636ea1fb69cdd15f12403962b9da3568c585c00d49bdd9d",
+            "outbound_count": 1,
+            "handovers": [
+              {
+                "handover_id": "H1",
+                "voucher_id": "V1",
+                "digest": "594a64ca6339c11f0f6dbc46b10f5c97656b0a9eb4d75c4e7eb5c996aa95c456",
+                "prev_digest": "3022bca938383d039ea59e2381d1c9c7123d8403552d2a7be75d15162aab84f6",
+                "is_outbound": true,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "outbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 120,
+                  "global_ts": 120
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 200,
+                  "global_ts": 120
+                },
+                "effective_global_ts": 120
+              },
+              {
+                "handover_id": "H2",
+                "voucher_id": "V2",
+                "digest": "9faa02d4109068fe2636ea1fb69cdd15f12403962b9da3568c585c00d49bdd9d",
+                "prev_digest": "594a64ca6339c11f0f6dbc46b10f5c97656b0a9eb4d75c4e7eb5c996aa95c456",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa2",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 150,
+                  "global_ts": 150
+                },
+                "receive": {
+                  "person_id": "pb2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_B",
+                  "local_ts": 240,
+                  "global_ts": 160
+                },
+                "effective_global_ts": 160
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1",
+                "pb2"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "joint_clock_conflict",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "UNSAT",
+      "error": {
+        "code": "GLOBAL_VOUCHER_CONFLICT",
+        "detail": "joint_clock_calibration_conflict"
+      }
+    },
+    {
+      "case_id": "voucher_conflict",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "UNSAT",
+      "error": {
+        "code": "GLOBAL_VOUCHER_CONFLICT",
+        "detail": "voucher_occupancy_conflict"
+      }
+    },
+    {
+      "case_id": "witness_insufficient",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "UNSAT",
+      "error": {
+        "code": "WITNESS_INSUFFICIENT",
+        "detail": null
+      }
+    },
+    {
+      "case_id": "repeated_witness",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "UNSAT",
+      "error": {
+        "code": "WITNESS_INSUFFICIENT",
+        "detail": null
+      }
+    },
+    {
+      "case_id": "forged_fork",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [
+        "handover F2BAD: 摘要核验失败（伪造/篡改），已排除"
+      ],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 0,
+        "distinct_outbound_handover_ids": [],
+        "institution_offsets": {
+          "INST_A": -20,
+          "INST_B": -20
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "d6dfbe16523672d6be585fc4f080da5182b1dce95f82cf6f9d2ce9dc4ea9ebe6",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 80
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "dff0c42b169a451f14856a2d81a6f423b081ca7b9fd870bfe21123cce504473b",
+            "outbound_count": 0,
+            "handovers": [
+              {
+                "handover_id": "F1",
+                "voucher_id": "V1",
+                "digest": "4c3720e3705622a2393d0dd58bc6c00c199c6e8ee5729bc28cbc6fc261072e9d",
+                "prev_digest": "d6dfbe16523672d6be585fc4f080da5182b1dce95f82cf6f9d2ce9dc4ea9ebe6",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 200,
+                  "global_ts": 180
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 220,
+                  "global_ts": 200
+                },
+                "effective_global_ts": 200
+              },
+              {
+                "handover_id": "F2OK",
+                "voucher_id": "V2",
+                "digest": "dff0c42b169a451f14856a2d81a6f423b081ca7b9fd870bfe21123cce504473b",
+                "prev_digest": "4c3720e3705622a2393d0dd58bc6c00c199c6e8ee5729bc28cbc6fc261072e9d",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 260,
+                  "global_ts": 240
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 280,
+                  "global_ts": 260
+                },
+                "effective_global_ts": 260
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "uncalibratable",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [
+        "handover U2: 前序摘要失配，已排除"
+      ],
+      "status": "UNSAT",
+      "error": {
+        "code": "EVIDENCE_UNCALIBRATABLE",
+        "detail": null,
+        "evidence_reasons": {
+          "E1": "clock_not_calibratable",
+          "E2": "no_structural_chain"
+        }
+      }
+    },
+    {
+      "case_id": "out_of_order_dup",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [
+        "handover D1: 重复候选已去重"
+      ],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 0,
+        "distinct_outbound_handover_ids": [],
+        "institution_offsets": {
+          "INST_A": -20,
+          "INST_B": -20
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "269e0a03e6acb0958750ae5a2d483da3d1b081693a726dce366c0eb7a15ba78f",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 80
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "85cc6ed90f0026092369ab3d1f2584a39f2ec1120633c1d0fbc051e4224106ed",
+            "outbound_count": 0,
+            "handovers": [
+              {
+                "handover_id": "D1",
+                "voucher_id": "V1",
+                "digest": "8296105b14e3efa197d8e1d915a6c28809b99227870306bfb95b4b4a717a38f3",
+                "prev_digest": "269e0a03e6acb0958750ae5a2d483da3d1b081693a726dce366c0eb7a15ba78f",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 200,
+                  "global_ts": 180
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 220,
+                  "global_ts": 200
+                },
+                "effective_global_ts": 200
+              },
+              {
+                "handover_id": "D2",
+                "voucher_id": "V2",
+                "digest": "85cc6ed90f0026092369ab3d1f2584a39f2ec1120633c1d0fbc051e4224106ed",
+                "prev_digest": "8296105b14e3efa197d8e1d915a6c28809b99227870306bfb95b4b4a717a38f3",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 260,
+                  "global_ts": 240
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "inbound",
+                  "inst_id": "INST_A",
+                  "local_ts": 280,
+                  "global_ts": 260
+                },
+                "effective_global_ts": 260
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1",
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "brute_force_oracle",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "validation_notes": [],
+      "status": "SAT",
+      "solution": {
+        "distinct_outbound_count": 0,
+        "distinct_outbound_handover_ids": [],
+        "institution_offsets": {
+          "INST_A": -30,
+          "INST_B": -30
+        },
+        "evidences": [
+          {
+            "evidence_id": "E1",
+            "collection": {
+              "digest": "1f78791f1aeb017cd82f96830ab496904371f28a860a04b3cecd55383fd6eb92",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 70
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "ed3aa98fa60ece24e4454ffce9325a7a732d9724b50cf95632b21e1e619743ea",
+            "outbound_count": 0,
+            "handovers": [
+              {
+                "handover_id": "B1",
+                "voucher_id": "V1",
+                "digest": "ed3aa98fa60ece24e4454ffce9325a7a732d9724b50cf95632b21e1e619743ea",
+                "prev_digest": "1f78791f1aeb017cd82f96830ab496904371f28a860a04b3cecd55383fd6eb92",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pa1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 200,
+                  "global_ts": 170
+                },
+                "receive": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 230,
+                  "global_ts": 200
+                },
+                "effective_global_ts": 200
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa1"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          },
+          {
+            "evidence_id": "E2",
+            "collection": {
+              "digest": "992e9960115faa35b47bf938c0452a9961454c92d830273f877979734145bd50",
+              "inst_id": "INST_A",
+              "local_ts": 100,
+              "global_ts": 70
+            },
+            "checkpoint_entry_global_ts": 3000,
+            "terminal_digest": "e26f0ef96ff35c6259158b7f1356bf9a0943a64e0f208b69243a6a699260c909",
+            "outbound_count": 0,
+            "handovers": [
+              {
+                "handover_id": "B2",
+                "voucher_id": "V2",
+                "digest": "e26f0ef96ff35c6259158b7f1356bf9a0943a64e0f208b69243a6a699260c909",
+                "prev_digest": "992e9960115faa35b47bf938c0452a9961454c92d830273f877979734145bd50",
+                "is_outbound": false,
+                "release": {
+                  "person_id": "pb1",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_B",
+                  "local_ts": 210,
+                  "global_ts": 180
+                },
+                "receive": {
+                  "person_id": "pa2",
+                  "auth_kind": "transfer",
+                  "inst_id": "INST_A",
+                  "local_ts": 240,
+                  "global_ts": 210
+                },
+                "effective_global_ts": 210
+              }
+            ],
+            "witness_by_institution": {
+              "INST_A": [
+                "pa2"
+              ],
+              "INST_B": [
+                "pb1"
+              ]
+            },
+            "witness_kind_count": 2
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1481 @@
+{
+  "schema": "forensic-packages/1",
+  "cases": [
+    {
+      "case_id": "basic_sat",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -50,
+          "offset_max": 50
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -50,
+          "offset_max": 50
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "outbound",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d45312d5041594c4f4144",
+          "evidence_sha256": "e1bee17bc2ad4386847038875ba796dee22278bf20868992f4c954d21daee714",
+          "collection": {
+            "digest": "7caf589c813db7c4b854efe3d953902b57b744c8e3f016ee48ae6ef6679a8c79",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "8d4d82638f0ef004c4aef398f67347c3c40dd6bcec399fff6809ce594b1e9b71"
+            ],
+            "entry_global_ts": 1000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "H1",
+          "evidence_id": "E1",
+          "prev_digest": "7caf589c813db7c4b854efe3d953902b57b744c8e3f016ee48ae6ef6679a8c79",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "outbound",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 210
+          },
+          "digest": "cd6d1e4659b0db676b7dabb648bdf8b31fb8ee0791049f827507e9141a8889b2"
+        },
+        {
+          "handover_id": "H2",
+          "evidence_id": "E1",
+          "prev_digest": "cd6d1e4659b0db676b7dabb648bdf8b31fb8ee0791049f827507e9141a8889b2",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 300
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 320
+          },
+          "digest": "8d4d82638f0ef004c4aef398f67347c3c40dd6bcec399fff6809ce594b1e9b71"
+        }
+      ]
+    },
+    {
+      "case_id": "fork_tie",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb2",
+          "name": "pb2",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "inbound"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d464f524b",
+          "evidence_sha256": "39050f90fc545b9f0c4a91e05730ea867393442f9ae6b036cd4a53096202b819",
+          "collection": {
+            "digest": "41b566728b3923d8bc410208938230b14e62006c89d770de88fb4e290dfaa0f3",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "d96e4e643ec01dcf1b046107d17e52db5654d2af276527778df029149b21a8d4",
+              "552961ab3965701d7b06260407d3c7029ae8bbf29e80ddbddbf28474d196fab6"
+            ],
+            "entry_global_ts": 1000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "H2B",
+          "evidence_id": "E1",
+          "prev_digest": "771e28f18db2f8851eaa5117a52647a6705af2f28677e6633cfd723067666162",
+          "voucher_id": "V3",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 145
+          },
+          "receive": {
+            "person_id": "pb2",
+            "auth_kind": "inbound",
+            "local_ts": 155
+          },
+          "digest": "552961ab3965701d7b06260407d3c7029ae8bbf29e80ddbddbf28474d196fab6"
+        },
+        {
+          "handover_id": "H1",
+          "evidence_id": "E1",
+          "prev_digest": "41b566728b3923d8bc410208938230b14e62006c89d770de88fb4e290dfaa0f3",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 120
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 130
+          },
+          "digest": "771e28f18db2f8851eaa5117a52647a6705af2f28677e6633cfd723067666162"
+        },
+        {
+          "handover_id": "H2A",
+          "evidence_id": "E1",
+          "prev_digest": "771e28f18db2f8851eaa5117a52647a6705af2f28677e6633cfd723067666162",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 140
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 150
+          },
+          "digest": "d96e4e643ec01dcf1b046107d17e52db5654d2af276527778df029149b21a8d4"
+        }
+      ]
+    },
+    {
+      "case_id": "voucher_coupling",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -30,
+          "offset_max": 30
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -30,
+          "offset_max": 30
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "outbound",
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pa3",
+          "name": "pa3",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb2",
+          "name": "pb2",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4531",
+          "evidence_sha256": "1cd3a812322b415298dfe6be41d116c255bdbd16b84ab22c4ed7c28c471bd4a1",
+          "collection": {
+            "digest": "32cb28e2ff19c25f19aab06ec141249f4392d9d16078f4db9988e309283913d8",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "9af481632fe8780273ae0dcec102b86d3fc71d9aa5a124d6110aaba40f4a1363",
+              "ca3d8e9cb9ee380c965c55bedd48b20401363b953cfab4a8896594b4ef19cfb2"
+            ],
+            "entry_global_ts": 3000
+          }
+        },
+        {
+          "evidence_id": "E2",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4532",
+          "evidence_sha256": "7801b30be3f5e822be725bb44084ed7058fa8b4b93075f0debb269c0c212bddf",
+          "collection": {
+            "digest": "92cd52d249954bfe77ad69eeb7a3dec6e7f119e57df104dbb78e17373b75d4fe",
+            "inst_id": "INST_A",
+            "local_ts": 110
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "b6a1941b914ae924e2ded6434a8a564ab99c4a8249f4f3d2904465654ad85fe3"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "H10",
+          "evidence_id": "E1",
+          "prev_digest": "32cb28e2ff19c25f19aab06ec141249f4392d9d16078f4db9988e309283913d8",
+          "voucher_id": "V_SHARED",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "outbound",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "c120362e5b4fbb6df55c3e00e91fbfe7b30e9bf1f39f24f0c8549b0233d51d2d"
+        },
+        {
+          "handover_id": "H11",
+          "evidence_id": "E1",
+          "prev_digest": "c120362e5b4fbb6df55c3e00e91fbfe7b30e9bf1f39f24f0c8549b0233d51d2d",
+          "voucher_id": "V_E1_END",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 260
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 280
+          },
+          "digest": "9af481632fe8780273ae0dcec102b86d3fc71d9aa5a124d6110aaba40f4a1363"
+        },
+        {
+          "handover_id": "H12",
+          "evidence_id": "E1",
+          "prev_digest": "32cb28e2ff19c25f19aab06ec141249f4392d9d16078f4db9988e309283913d8",
+          "voucher_id": "V_E1_A",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "outbound",
+            "local_ts": 300
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 320
+          },
+          "digest": "5fc39ddaedfdae85089448872b8a55d4f33565c0d9c143a0ac76c43eeff1602d"
+        },
+        {
+          "handover_id": "H13",
+          "evidence_id": "E1",
+          "prev_digest": "5fc39ddaedfdae85089448872b8a55d4f33565c0d9c143a0ac76c43eeff1602d",
+          "voucher_id": "V_E1_B",
+          "release": {
+            "person_id": "pb2",
+            "auth_kind": "transfer",
+            "local_ts": 400
+          },
+          "receive": {
+            "person_id": "pa3",
+            "auth_kind": "transfer",
+            "local_ts": 420
+          },
+          "digest": "3d29ebaed7db5032841bdcc67f996055a8d6ca4f3a9452ed03fd3dd2b42c499f"
+        },
+        {
+          "handover_id": "H14",
+          "evidence_id": "E1",
+          "prev_digest": "3d29ebaed7db5032841bdcc67f996055a8d6ca4f3a9452ed03fd3dd2b42c499f",
+          "voucher_id": "V_E1_C",
+          "release": {
+            "person_id": "pa3",
+            "auth_kind": "transfer",
+            "local_ts": 500
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 520
+          },
+          "digest": "ca3d8e9cb9ee380c965c55bedd48b20401363b953cfab4a8896594b4ef19cfb2"
+        },
+        {
+          "handover_id": "H20",
+          "evidence_id": "E2",
+          "prev_digest": "92cd52d249954bfe77ad69eeb7a3dec6e7f119e57df104dbb78e17373b75d4fe",
+          "voucher_id": "V_SHARED",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "outbound",
+            "local_ts": 210
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 230
+          },
+          "digest": "4a79abb8b87e50fb268cccc793f28e641b3b3138b96b1ac711bfb397312a9bb1"
+        },
+        {
+          "handover_id": "H21",
+          "evidence_id": "E2",
+          "prev_digest": "4a79abb8b87e50fb268cccc793f28e641b3b3138b96b1ac711bfb397312a9bb1",
+          "voucher_id": "V_E2_END",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 300
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 320
+          },
+          "digest": "b6a1941b914ae924e2ded6434a8a564ab99c4a8249f4f3d2904465654ad85fe3"
+        }
+      ]
+    },
+    {
+      "case_id": "clock_reversal",
+      "deadline": 2000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": 0,
+          "offset_max": 200
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -100,
+          "offset_max": 100
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "outbound",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb2",
+          "name": "pb2",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "inbound"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d524556",
+          "evidence_sha256": "362ad143dfe95f7c255234662dc45aac5f0b57286fcb6661d22487b5d80658d4",
+          "collection": {
+            "digest": "3022bca938383d039ea59e2381d1c9c7123d8403552d2a7be75d15162aab84f6",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "9faa02d4109068fe2636ea1fb69cdd15f12403962b9da3568c585c00d49bdd9d"
+            ],
+            "entry_global_ts": 1000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "H1",
+          "evidence_id": "E1",
+          "prev_digest": "3022bca938383d039ea59e2381d1c9c7123d8403552d2a7be75d15162aab84f6",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "outbound",
+            "local_ts": 120
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "digest": "594a64ca6339c11f0f6dbc46b10f5c97656b0a9eb4d75c4e7eb5c996aa95c456"
+        },
+        {
+          "handover_id": "H2",
+          "evidence_id": "E1",
+          "prev_digest": "594a64ca6339c11f0f6dbc46b10f5c97656b0a9eb4d75c4e7eb5c996aa95c456",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pa2",
+            "auth_kind": "transfer",
+            "local_ts": 150
+          },
+          "receive": {
+            "person_id": "pb2",
+            "auth_kind": "inbound",
+            "local_ts": 240
+          },
+          "digest": "9faa02d4109068fe2636ea1fb69cdd15f12403962b9da3568c585c00d49bdd9d"
+        }
+      ]
+    },
+    {
+      "case_id": "joint_clock_conflict",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -60,
+          "offset_max": 60
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -60,
+          "offset_max": 60
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4a31",
+          "evidence_sha256": "fe91cb9e36d549590946c8f969a9399bcd3ba228c03c92afde2e72a7e28b8add",
+          "collection": {
+            "digest": "75051a44cc82f77c4bb3bc25d1d07c5749cc4c4a1f89f52546d037f4b2c503ad",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "1afa6cc4cf2ea18ab36f6eca675dcc061043e3580024f9b349024b4eb500b4eb"
+            ],
+            "entry_global_ts": 3000
+          }
+        },
+        {
+          "evidence_id": "E2",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4a32",
+          "evidence_sha256": "de0dd2c875b6793b7929c1709feec2b5071274cefa11e3983ba7affb71089414",
+          "collection": {
+            "digest": "0b3ef2c5ff5f2f671c60e992473c5a3440664549354cf13d0cc834c1878d0e9f",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "cceb1cf24861337b920d1490f7ddbdac63666fb19e40e646f39ece01c3dafd6e"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "J1",
+          "evidence_id": "E1",
+          "prev_digest": "75051a44cc82f77c4bb3bc25d1d07c5749cc4c4a1f89f52546d037f4b2c503ad",
+          "voucher_id": "W1",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 100
+          },
+          "digest": "1afa6cc4cf2ea18ab36f6eca675dcc061043e3580024f9b349024b4eb500b4eb"
+        },
+        {
+          "handover_id": "J2",
+          "evidence_id": "E2",
+          "prev_digest": "0b3ef2c5ff5f2f671c60e992473c5a3440664549354cf13d0cc834c1878d0e9f",
+          "voucher_id": "W2",
+          "release": {
+            "person_id": "pa2",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 100
+          },
+          "digest": "cceb1cf24861337b920d1490f7ddbdac63666fb19e40e646f39ece01c3dafd6e"
+        }
+      ]
+    },
+    {
+      "case_id": "voucher_conflict",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d564331",
+          "evidence_sha256": "5a594ea4aa4d25fcbd6cb9492b0a14296de64a11026cce190583cf84181d2bca",
+          "collection": {
+            "digest": "8e530a8808800ef3f2a0280790bc948d4b513770c4c99e5b632b05d9ba64e19a",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "190681dc56fdf5191849172f5b9466b6022e375ad24de37a8af3b99068cc9404"
+            ],
+            "entry_global_ts": 3000
+          }
+        },
+        {
+          "evidence_id": "E2",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d564332",
+          "evidence_sha256": "4ba3e7d36e283f9057805d2b4f16cbde48be198e9c5ff93f9875392d8f63700d",
+          "collection": {
+            "digest": "ac402e4c5990a8402ddebae2a612e8acc3b58eb359157a4e87c59344ed7c189a",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "7c593dce8ff305d756185f0aac66a88b9506e4a75ea76c98dcfde347ba1fd0a4"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "K1",
+          "evidence_id": "E1",
+          "prev_digest": "8e530a8808800ef3f2a0280790bc948d4b513770c4c99e5b632b05d9ba64e19a",
+          "voucher_id": "V_LOCK",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "190681dc56fdf5191849172f5b9466b6022e375ad24de37a8af3b99068cc9404"
+        },
+        {
+          "handover_id": "K2",
+          "evidence_id": "E2",
+          "prev_digest": "ac402e4c5990a8402ddebae2a612e8acc3b58eb359157a4e87c59344ed7c189a",
+          "voucher_id": "V_LOCK",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 210
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 230
+          },
+          "digest": "7c593dce8ff305d756185f0aac66a88b9506e4a75ea76c98dcfde347ba1fd0a4"
+        }
+      ]
+    },
+    {
+      "case_id": "witness_insufficient",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d5749",
+          "evidence_sha256": "0cad933706feacd8fb1405845959149c44d416b7f766751bd053ba174d21c9e9",
+          "collection": {
+            "digest": "2dba67045cbc1d6fafe54e32da39b1fcd5d67566022ae0e30baa0d29c5a6040d",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "0020c85a786b25c8094ffbffc2ae34fbb4802ebbd4771c117e0076457c163d41"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "W1",
+          "evidence_id": "E1",
+          "prev_digest": "2dba67045cbc1d6fafe54e32da39b1fcd5d67566022ae0e30baa0d29c5a6040d",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 240
+          },
+          "digest": "0020c85a786b25c8094ffbffc2ae34fbb4802ebbd4771c117e0076457c163d41"
+        }
+      ]
+    },
+    {
+      "case_id": "repeated_witness",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d5257",
+          "evidence_sha256": "b006ed387d4e99526c963cc76c85cf06bcb3fe758015a7f882539869d44bdd8b",
+          "collection": {
+            "digest": "98374939940a13bd6b664507be57db2ef05e9bcb661e4607fb01ddc2b0ddea68",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "ab51614daf2d176c7f2a636e7ce82a13317e88ff1286bf33b49cbd0d6fa621d7"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "R1",
+          "evidence_id": "E1",
+          "prev_digest": "98374939940a13bd6b664507be57db2ef05e9bcb661e4607fb01ddc2b0ddea68",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "fb0b2804476e17ffd1030a22267b136c677f652c505bc9909e79428ae7998036"
+        },
+        {
+          "handover_id": "R2",
+          "evidence_id": "E1",
+          "prev_digest": "fb0b2804476e17ffd1030a22267b136c677f652c505bc9909e79428ae7998036",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 260
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 280
+          },
+          "digest": "ab51614daf2d176c7f2a636e7ce82a13317e88ff1286bf33b49cbd0d6fa621d7"
+        }
+      ]
+    },
+    {
+      "case_id": "forged_fork",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb2",
+          "name": "pb2",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "inbound"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4646",
+          "evidence_sha256": "d348c755d1847dd9c68623785a6899bc571229236d4410326675e644f7f6bb48",
+          "collection": {
+            "digest": "d6dfbe16523672d6be585fc4f080da5182b1dce95f82cf6f9d2ce9dc4ea9ebe6",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "dff0c42b169a451f14856a2d81a6f423b081ca7b9fd870bfe21123cce504473b",
+              "425464b3c819fda141123bd4e9496e36ac8751b21c9436370333809bf529ecf8"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "F1",
+          "evidence_id": "E1",
+          "prev_digest": "d6dfbe16523672d6be585fc4f080da5182b1dce95f82cf6f9d2ce9dc4ea9ebe6",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "4c3720e3705622a2393d0dd58bc6c00c199c6e8ee5729bc28cbc6fc261072e9d"
+        },
+        {
+          "handover_id": "F2OK",
+          "evidence_id": "E1",
+          "prev_digest": "4c3720e3705622a2393d0dd58bc6c00c199c6e8ee5729bc28cbc6fc261072e9d",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 260
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 280
+          },
+          "digest": "dff0c42b169a451f14856a2d81a6f423b081ca7b9fd870bfe21123cce504473b"
+        },
+        {
+          "handover_id": "F2BAD",
+          "evidence_id": "E1",
+          "prev_digest": "4c3720e3705622a2393d0dd58bc6c00c199c6e8ee5729bc28cbc6fc261072e9d",
+          "voucher_id": "V3",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 700
+          },
+          "receive": {
+            "person_id": "pb2",
+            "auth_kind": "inbound",
+            "local_ts": 720
+          },
+          "digest": "425464b3c819fda141123bd4e9496e36ac8751b21c9436370333809bf529ecf8"
+        }
+      ]
+    },
+    {
+      "case_id": "uncalibratable",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -10,
+          "offset_max": 10
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -10,
+          "offset_max": 10
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d554331",
+          "evidence_sha256": "ce3817cbd5840b3dafd62572144835334f3787ef464d8a0efac1525892b8e541",
+          "collection": {
+            "digest": "375dffa2d1fbffa0dee8c0f7a855fd3e70c50b3b2db8d3a7a7733472381d226d",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "e873f7c24cccee3fa414bc9e1c55ff4b4ed55727573e412276a5acc42c8d94d3"
+            ],
+            "entry_global_ts": 3000
+          }
+        },
+        {
+          "evidence_id": "E2",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d554332",
+          "evidence_sha256": "7174bb146c1a0e8448c66fa88f50cda188d80766fbd6b70da67a272833668fbe",
+          "collection": {
+            "digest": "2c6bf0f8d63c7420452d3e03e691729569bb29239f8caa78f41a3702655097ac",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "7ce437e2c4765dc1869e912d1c10cba8f308f860d1aee1cdfbb71efeb422e4c7"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "U1",
+          "evidence_id": "E1",
+          "prev_digest": "375dffa2d1fbffa0dee8c0f7a855fd3e70c50b3b2db8d3a7a7733472381d226d",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 100
+          },
+          "digest": "e873f7c24cccee3fa414bc9e1c55ff4b4ed55727573e412276a5acc42c8d94d3"
+        },
+        {
+          "handover_id": "U2",
+          "evidence_id": "E2",
+          "prev_digest": "dead-digest-not-registered",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "7ce437e2c4765dc1869e912d1c10cba8f308f860d1aee1cdfbb71efeb422e4c7"
+        }
+      ]
+    },
+    {
+      "case_id": "out_of_order_dup",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -20,
+          "offset_max": 20
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -20,
+          "offset_max": 20
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d4f4f",
+          "evidence_sha256": "6eb6e4dd55661352cfae8da6424be909a35eeccacbe497558406e60e41fda90c",
+          "collection": {
+            "digest": "269e0a03e6acb0958750ae5a2d483da3d1b081693a726dce366c0eb7a15ba78f",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "85cc6ed90f0026092369ab3d1f2584a39f2ec1120633c1d0fbc051e4224106ed"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "D2",
+          "evidence_id": "E1",
+          "prev_digest": "8296105b14e3efa197d8e1d915a6c28809b99227870306bfb95b4b4a717a38f3",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 260
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "inbound",
+            "local_ts": 280
+          },
+          "digest": "85cc6ed90f0026092369ab3d1f2584a39f2ec1120633c1d0fbc051e4224106ed"
+        },
+        {
+          "handover_id": "D1",
+          "evidence_id": "E1",
+          "prev_digest": "269e0a03e6acb0958750ae5a2d483da3d1b081693a726dce366c0eb7a15ba78f",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "8296105b14e3efa197d8e1d915a6c28809b99227870306bfb95b4b4a717a38f3"
+        },
+        {
+          "handover_id": "D1",
+          "evidence_id": "E1",
+          "prev_digest": "269e0a03e6acb0958750ae5a2d483da3d1b081693a726dce366c0eb7a15ba78f",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 220
+          },
+          "digest": "8296105b14e3efa197d8e1d915a6c28809b99227870306bfb95b4b4a717a38f3"
+        }
+      ]
+    },
+    {
+      "case_id": "brute_force_oracle",
+      "deadline": 5000,
+      "min_witness_kinds": 2,
+      "institutions": [
+        {
+          "inst_id": "INST_A",
+          "name": "INST_A",
+          "offset_min": -30,
+          "offset_max": 30
+        },
+        {
+          "inst_id": "INST_B",
+          "name": "INST_B",
+          "offset_min": -30,
+          "offset_max": 30
+        }
+      ],
+      "persons": [
+        {
+          "person_id": "pa1",
+          "name": "pa1",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        },
+        {
+          "person_id": "pa2",
+          "name": "pa2",
+          "inst_id": "INST_A",
+          "auth_kinds": [
+            "transfer",
+            "inbound"
+          ]
+        },
+        {
+          "person_id": "pb1",
+          "name": "pb1",
+          "inst_id": "INST_B",
+          "auth_kinds": [
+            "transfer",
+            "inspect"
+          ]
+        }
+      ],
+      "evidences": [
+        {
+          "evidence_id": "E1",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d424631",
+          "evidence_sha256": "6056e02cfd7395b16233b26d82bd05f85acf2203084223c8e459e9e6e1307b28",
+          "collection": {
+            "digest": "1f78791f1aeb017cd82f96830ab496904371f28a860a04b3cecd55383fd6eb92",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "ed3aa98fa60ece24e4454ffce9325a7a732d9724b50cf95632b21e1e619743ea"
+            ],
+            "entry_global_ts": 3000
+          }
+        },
+        {
+          "evidence_id": "E2",
+          "tenant": "TENANT-X",
+          "custodian": "CUSTODIAN-1",
+          "payload_hex": "53594e2d424632",
+          "evidence_sha256": "1c69e96aac71fd9497ddc01ab73d4be4f8b1a67efda605efb82fdf738a108a0f",
+          "collection": {
+            "digest": "992e9960115faa35b47bf938c0452a9961454c92d830273f877979734145bd50",
+            "inst_id": "INST_A",
+            "local_ts": 100
+          },
+          "checkpoint": {
+            "accepted_terminal_digests": [
+              "e26f0ef96ff35c6259158b7f1356bf9a0943a64e0f208b69243a6a699260c909"
+            ],
+            "entry_global_ts": 3000
+          }
+        }
+      ],
+      "handovers": [
+        {
+          "handover_id": "B2",
+          "evidence_id": "E2",
+          "prev_digest": "992e9960115faa35b47bf938c0452a9961454c92d830273f877979734145bd50",
+          "voucher_id": "V2",
+          "release": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 210
+          },
+          "receive": {
+            "person_id": "pa2",
+            "auth_kind": "transfer",
+            "local_ts": 240
+          },
+          "digest": "e26f0ef96ff35c6259158b7f1356bf9a0943a64e0f208b69243a6a699260c909"
+        },
+        {
+          "handover_id": "B1",
+          "evidence_id": "E1",
+          "prev_digest": "1f78791f1aeb017cd82f96830ab496904371f28a860a04b3cecd55383fd6eb92",
+          "voucher_id": "V1",
+          "release": {
+            "person_id": "pa1",
+            "auth_kind": "transfer",
+            "local_ts": 200
+          },
+          "receive": {
+            "person_id": "pb1",
+            "auth_kind": "transfer",
+            "local_ts": 230
+          },
+          "digest": "ed3aa98fa60ece24e4454ffce9325a7a732d9724b50cf95632b21e1e619743ea"
+        }
+      ]
+    }
+  ]
+}
